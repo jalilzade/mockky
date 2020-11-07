@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"time"
 )
 
 func main() {
@@ -19,10 +18,15 @@ func main() {
 
 	config := &ServerConfig{
 		Address:      fmt.Sprintf("%s:%d", *ip, *port),
-		WriteTimeout: 15 * time.Second,
-		ReadTimeout:  15 * time.Second,
+		WriteTimeout: 15,
+		ReadTimeout:  15,
 	}
 
-	srv := NewServer(config)
+	srv, err := NewServer(config)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
 	srv.start()
 }
