@@ -1,0 +1,17 @@
+[
+    {
+        "id":1,
+        "name":"pencil",
+        "price":8
+    },
+    {
+        "id":2,
+        "name":"pen",
+        "price": 15.4
+    },   
+    {
+        "id":3,
+        "name":"Eraser",
+        "price":14.2
+    }
+]
