@@ -10,6 +10,14 @@ import (
 	"github.com/gorilla/mux"
 )
 
+var (
+	//ErrWriteTimeoutOverFlows WriteTimeout overflows int64
+	ErrWriteTimeoutOverFlows = errors.New("WriteTimeout overflows int64")
+
+	//ErrReadTimeoutOverFlows ReadTimeout overflows int64
+	ErrReadTimeoutOverFlows = errors.New("ReadTimeout overflows int64")
+)
+
 //Server is our main server
 type Server struct {
 	router     *mux.Router
@@ -26,11 +34,11 @@ func NewServer(config *ServerConfig) (*Server, error) {
 
 	//Check for Int64 Overflow
 	if math.MaxInt64/time.Second < config.WriteTimeout {
-		return nil, errors.New("WriteTimeout overflows int64")
+		return nil, ErrWriteTimeoutOverFlows
 	}
 
 	if math.MaxInt64/time.Second < config.ReadTimeout {
-		return nil, errors.New("ReadTimeout overflows int64")
+		return nil, ErrReadTimeoutOverFlows
 	}
 
 	server := &Server{
