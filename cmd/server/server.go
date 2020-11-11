@@ -31,7 +31,6 @@ func NewServer(config *ServerConfig) (*Server, error) {
 	// todo: Create HttppServer
 
 	router := mux.NewRouter()
-	registerRouters(router)
 
 	//Check for Int64 Overflow
 	if math.MaxInt64/time.Second < config.WriteTimeout {
@@ -53,6 +52,7 @@ func NewServer(config *ServerConfig) (*Server, error) {
 		},
 	}
 
+	server.registerRouters()
 	return server, nil
 }
 

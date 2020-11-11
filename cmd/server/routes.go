@@ -10,20 +10,19 @@ import (
 	"github.com/thedevsaddam/gojsonq"
 )
 
-func registerRouters(router *mux.Router) {
-
-	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+func (s *Server) registerRouters() {
+	s.router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		// an example API handler
 		json.NewEncoder(w).Encode(map[string]bool{"ok": true})
 	})
 
-	router.HandleFunc("/api/{entity}", mainEntityHandler)
+	s.router.HandleFunc("/api/{entity}", s.mainEntityHandler)
 }
 
-func mainEntityHandler(w http.ResponseWriter, r *http.Request) {
+func (s *Server) mainEntityHandler(w http.ResponseWriter, r *http.Request) {
 	parameter := mux.Vars(r)
 	//todo: use path concat
-	absPath, err := filepath.Abs(fmt.Sprintf("./cmd/server/database/%s.json", parameter["entity"]))
+	absPath, err := filepath.Abs(fmt.Sprintf("./cmd/server/%s/%s.json", s.config.DatabaseRoot, parameter["entity"]))
 	if err != nil {
 		json.NewEncoder(w).Encode(map[string]interface{}{"ok": false, "err": err})
 		return

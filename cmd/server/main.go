@@ -20,6 +20,7 @@ func main() {
 		Address:      fmt.Sprintf("%s:%d", *ip, *port),
 		WriteTimeout: 15,
 		ReadTimeout:  15,
+		DatabaseRoot: "database",
 	}
 
 	srv, err := NewServer(config)

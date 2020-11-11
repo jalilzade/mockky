@@ -7,4 +7,5 @@ type ServerConfig struct {
 	Address      string
 	WriteTimeout time.Duration
 	ReadTimeout  time.Duration
+	DatabaseRoot string
 }
