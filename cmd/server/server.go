@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math"
 	"net/http"
+	"reflect"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -64,4 +65,10 @@ func (s *Server) start() error {
 func (s *Server) stop() error {
 	// todo: Stop HttpServer
 	return nil
+}
+
+//DeepEqual to compare servers
+func (s *Server) DeepEqual(s2 *Server) bool {
+	//TODO: Complete this part
+	return reflect.DeepEqual(*s.config, *s2.config)
 }

@@ -6,6 +6,7 @@ import (
 )
 
 func TestNewServer(t *testing.T) {
+
 	type args struct {
 		config *ServerConfig
 	}
@@ -25,6 +26,7 @@ func TestNewServer(t *testing.T) {
 					ReadTimeout:  15,
 				},
 			},
+			want:          nil,
 			wantErr:       true,
 			expectedError: ErrWriteTimeoutOverFlows,
 		},
@@ -37,6 +39,7 @@ func TestNewServer(t *testing.T) {
 					ReadTimeout:  15 * time.Second,
 				},
 			},
+			want:          nil,
 			wantErr:       true,
 			expectedError: ErrReadTimeoutOverFlows,
 		},
@@ -44,7 +47,13 @@ func TestNewServer(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			_, err := NewServer(tt.args.config)
+			got, err := NewServer(tt.args.config)
+
+			if got != tt.want && got.DeepEqual(tt.want) {
+				t.Errorf("NewServer() returned wrong server instance config %v %v", *got.config, *tt.want.config)
+				return
+			}
+
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewServer() error = %v, wantErr %v", err, tt.wantErr)
 				return
