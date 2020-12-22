@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	ip := flag.String("ip", "127.0.0.1", "ip that will server host")
+	ip := flag.String("ip", "0.0.0.0", "ip that will server host")
 	port := flag.Int("port", 8080, "port that will server listen")
 	helpflag := flag.Bool("help", false, "shows help")
 	flag.Parse()

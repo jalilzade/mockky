@@ -11,12 +11,10 @@ import (
 )
 
 func (s *Server) registerRouters() {
-	s.router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		// an example API handler
-		json.NewEncoder(w).Encode(map[string]bool{"ok": true})
-	})
 
+	frontendserver := http.FileServer(http.Dir("./webapp"))
 	s.router.HandleFunc("/api/{entity}", s.mainEntityHandler)
+	s.router.PathPrefix("/").Handler(frontendserver)
 }
 
 func (s *Server) mainEntityHandler(w http.ResponseWriter, r *http.Request) {
