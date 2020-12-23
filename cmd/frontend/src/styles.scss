@@ -1,4 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  /* Background */
+	--color-bg: rgb(40, 41, 37);
+	--color-bg-rgb: 40, 41, 37;
+	--color-success: rgb(126, 207, 43);
+	--color-success-rgb: 126, 207, 43;
+	--color-notice: rgb(240, 225, 55);
+	--color-notice-rgb: 240, 225, 55;
+	--color-warning: rgb(255, 154, 31);
+	--color-warning-rgb: 255, 154, 31;
+	--color-danger: rgb(255, 86, 49);
+	--color-danger-rgb: 255, 86, 49;
+	--color-surprise: rgb(168, 150, 255);
+	--color-surprise-rgb: 168, 150, 255;
+	--color-info: rgb(70, 193, 230);
+	--color-info-rgb: 70, 193, 230;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  /* Foreground */
+	--color-font: rgb(224, 224, 224);
+	--color-font-rgb: 224, 224, 224;
+  --color-font-success: rgb(255, 255, 255);
+  --color-font-success-rgb: 255, 255, 255;
+  --color-font-notice: rgb(255, 255, 255);
+  --color-font-notice-rgb: 255, 255, 255;
+  --color-font-warning: rgb(255, 255, 255);
+  --color-font-warning-rgb: 255, 255, 255;
+  --color-font-danger: rgb(255, 255, 255);
+  --color-font-danger-rgb: 255, 255, 255;
+  --color-font-surprise: rgb(255, 255, 255);
+  --color-font-surprise-rgb: 255, 255, 255;
+  --color-font-info: rgb(255, 255, 255);
+  --color-font-info-rgb: 255, 255, 255;
+}
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-font);
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
